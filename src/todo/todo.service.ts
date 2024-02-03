@@ -27,6 +27,34 @@ export class TodoService {
     }
   }
 
+  async fetchAll() {
+    try {
+      const todos = await this.prisma.toDo.findMany();
+      return {
+        message: "All ToDos fetched",
+        data: todos,
+        success: true,
+      };
+    } catch (error) {
+      throw new CustomExeption(`${error}`, HttpStatus.NOT_FOUND);
+    }
+  }
+
+  async fetchById(id: number) {
+    try {
+      const todo = await this.prisma.toDo.findUnique({
+        where: { id: id },
+      });
+      return {
+        message: "ToDo fetched",
+        data: todo,
+        success: true,
+      };
+    } catch (error) {
+      throw new CustomExeption(`${error}`, HttpStatus.NOT_FOUND);
+    }
+  }
+
   async updateToDo(id: number, @Body() dto: ToDoDto) {
     try {
       const todo = await this.prisma.toDo.update({

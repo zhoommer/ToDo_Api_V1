@@ -41,6 +41,34 @@ let TodoService = class TodoService {
             throw new customException_1.CustomExeption(`${error}`, common_1.HttpStatus.BAD_REQUEST);
         }
     }
+    async fetchAll() {
+        try {
+            const todos = await this.prisma.toDo.findMany();
+            return {
+                message: "All ToDos fetched",
+                data: todos,
+                success: true,
+            };
+        }
+        catch (error) {
+            throw new customException_1.CustomExeption(`${error}`, common_1.HttpStatus.NOT_FOUND);
+        }
+    }
+    async fetchById(id) {
+        try {
+            const todo = await this.prisma.toDo.findUnique({
+                where: { id: id },
+            });
+            return {
+                message: "ToDo fetched",
+                data: todo,
+                success: true,
+            };
+        }
+        catch (error) {
+            throw new customException_1.CustomExeption(`${error}`, common_1.HttpStatus.NOT_FOUND);
+        }
+    }
     async updateToDo(id, dto) {
         try {
             const todo = await this.prisma.toDo.update({

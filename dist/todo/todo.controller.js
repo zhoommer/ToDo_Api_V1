@@ -23,6 +23,12 @@ let TodoController = class TodoController {
     addToDo(dto) {
         return this.todoService.addToDo(dto);
     }
+    fetchAllToDo() {
+        return this.todoService.fetchAll();
+    }
+    fetchById(id) {
+        return this.todoService.fetchById(+id);
+    }
     updateToDo(id, dto) {
         return this.todoService.updateToDo(+id, dto);
     }
@@ -35,6 +41,19 @@ __decorate([
     __metadata("design:paramtypes", [todo_dto_1.ToDoDto]),
     __metadata("design:returntype", void 0)
 ], TodoController.prototype, "addToDo", null);
+__decorate([
+    (0, common_1.Get)("/todos"),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], TodoController.prototype, "fetchAllToDo", null);
+__decorate([
+    (0, common_1.Get)("/todo/:id"),
+    __param(0, (0, common_1.Param)("id")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], TodoController.prototype, "fetchById", null);
 __decorate([
     (0, common_1.Patch)("/update-todo/:id"),
     __param(0, (0, common_1.Param)("id")),

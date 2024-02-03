@@ -16,6 +16,32 @@ export declare class TodoController {
         };
         success: boolean;
     }>;
+    fetchAllToDo(): Promise<{
+        message: string;
+        data: {
+            id: number;
+            title: string;
+            description: string;
+            label: string;
+            schedule: Date;
+            createdAt: Date;
+            updatedAt: Date;
+        }[];
+        success: boolean;
+    }>;
+    fetchById(id: string): Promise<{
+        message: string;
+        data: {
+            id: number;
+            title: string;
+            description: string;
+            label: string;
+            schedule: Date;
+            createdAt: Date;
+            updatedAt: Date;
+        };
+        success: boolean;
+    }>;
     updateToDo(id: string, dto: ToDoDto): Promise<{
         message: string;
         data: {
