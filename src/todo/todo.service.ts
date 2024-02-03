@@ -75,4 +75,19 @@ export class TodoService {
       throw new CustomExeption(`${error}`, HttpStatus.BAD_REQUEST);
     }
   }
+
+  async deleteToDo(id: number) {
+    try {
+      const todo = await this.prisma.toDo.delete({
+        where: { id: id },
+      });
+      return {
+        message: "ToDo deleted successfully",
+        data: todo,
+        success: true,
+      };
+    } catch (error) {
+      throw new CustomExeption(`${error}`, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
 }
