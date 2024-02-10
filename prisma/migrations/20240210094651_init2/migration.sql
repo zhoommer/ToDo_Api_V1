@@ -1,0 +1,9 @@
+-- CreateTable
+CREATE TABLE "Labels" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "value" TEXT NOT NULL,
+    "label" TEXT NOT NULL,
+    "color" TEXT NOT NULL,
+    "toDoId" INTEGER NOT NULL,
+    CONSTRAINT "Labels_toDoId_fkey" FOREIGN KEY ("toDoId") REFERENCES "ToDo" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);

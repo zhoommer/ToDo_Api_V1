@@ -17,6 +17,18 @@ model ToDo {
   label       String?
   schedule    DateTime?
 
+  labels Labels[]
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Labels {
+  id    Int    @id @default(autoincrement())
+  value String
+  label String
+  color String
+
+  toDo   ToDo @relation(fields: [toDoId], references: [id])
+  toDoId Int
 }
