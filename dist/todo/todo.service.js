@@ -27,7 +27,6 @@ let TodoService = class TodoService {
                 data: {
                     title: dto.title,
                     description: dto.description,
-                    label: dto.label,
                     schedule: dto.schedule,
                 },
             });
@@ -43,7 +42,11 @@ let TodoService = class TodoService {
     }
     async fetchAll() {
         try {
-            const todos = await this.prisma.toDo.findMany();
+            const todos = await this.prisma.toDo.findMany({
+                include: {
+                    labels: true,
+                },
+            });
             return {
                 message: "All ToDos fetched",
                 data: todos,
@@ -76,7 +79,6 @@ let TodoService = class TodoService {
                 data: {
                     title: dto.title,
                     description: dto.description,
-                    label: dto.label,
                     schedule: dto.schedule,
                 },
             });
@@ -88,6 +90,21 @@ let TodoService = class TodoService {
         }
         catch (error) {
             throw new customException_1.CustomExeption(`${error}`, common_1.HttpStatus.BAD_REQUEST);
+        }
+    }
+    async deleteToDo(id) {
+        try {
+            const todo = await this.prisma.toDo.delete({
+                where: { id: id },
+            });
+            return {
+                message: "ToDo deleted successfully",
+                data: todo,
+                success: true,
+            };
+        }
+        catch (error) {
+            throw new customException_1.CustomExeption(`${error}`, common_1.HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 };

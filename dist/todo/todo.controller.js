@@ -32,6 +32,9 @@ let TodoController = class TodoController {
     updateToDo(id, dto) {
         return this.todoService.updateToDo(+id, dto);
     }
+    deleteToDo(id) {
+        return this.todoService.deleteToDo(+id);
+    }
 };
 exports.TodoController = TodoController;
 __decorate([
@@ -62,6 +65,13 @@ __decorate([
     __metadata("design:paramtypes", [String, todo_dto_1.ToDoDto]),
     __metadata("design:returntype", void 0)
 ], TodoController.prototype, "updateToDo", null);
+__decorate([
+    (0, common_1.Delete)("/delete-todo/:id"),
+    __param(0, (0, common_1.Param)("id")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], TodoController.prototype, "deleteToDo", null);
 exports.TodoController = TodoController = __decorate([
     (0, common_1.Controller)("api/v1"),
     __metadata("design:paramtypes", [todo_service_1.TodoService])

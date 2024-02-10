@@ -13,7 +13,6 @@ export class TodoService {
         data: {
           title: dto.title,
           description: dto.description,
-          label: dto.label,
           schedule: dto.schedule,
         },
       });
@@ -29,7 +28,11 @@ export class TodoService {
 
   async fetchAll() {
     try {
-      const todos = await this.prisma.toDo.findMany();
+      const todos = await this.prisma.toDo.findMany({
+        include: {
+          labels: true,
+        },
+      });
       return {
         message: "All ToDos fetched",
         data: todos,
@@ -62,7 +65,6 @@ export class TodoService {
         data: {
           title: dto.title,
           description: dto.description,
-          label: dto.label,
           schedule: dto.schedule,
         },
       });

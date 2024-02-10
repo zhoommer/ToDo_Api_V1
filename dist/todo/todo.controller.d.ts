@@ -9,7 +9,6 @@ export declare class TodoController {
             id: number;
             title: string;
             description: string;
-            label: string;
             schedule: Date;
             createdAt: Date;
             updatedAt: Date;
@@ -18,15 +17,22 @@ export declare class TodoController {
     }>;
     fetchAllToDo(): Promise<{
         message: string;
-        data: {
+        data: ({
+            labels: {
+                id: number;
+                value: string;
+                label: string;
+                color: string;
+                toDoId: number;
+            }[];
+        } & {
             id: number;
             title: string;
             description: string;
-            label: string;
             schedule: Date;
             createdAt: Date;
             updatedAt: Date;
-        }[];
+        })[];
         success: boolean;
     }>;
     fetchById(id: string): Promise<{
@@ -35,7 +41,6 @@ export declare class TodoController {
             id: number;
             title: string;
             description: string;
-            label: string;
             schedule: Date;
             createdAt: Date;
             updatedAt: Date;
@@ -48,7 +53,18 @@ export declare class TodoController {
             id: number;
             title: string;
             description: string;
-            label: string;
+            schedule: Date;
+            createdAt: Date;
+            updatedAt: Date;
+        };
+        success: boolean;
+    }>;
+    deleteToDo(id: string): Promise<{
+        message: string;
+        data: {
+            id: number;
+            title: string;
+            description: string;
             schedule: Date;
             createdAt: Date;
             updatedAt: Date;

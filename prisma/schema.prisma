@@ -14,7 +14,6 @@ model ToDo {
   id          Int       @id @default(autoincrement())
   title       String?
   description String?
-  label       String?
   schedule    DateTime?
 
   labels Labels[]
@@ -29,6 +28,6 @@ model Labels {
   label String
   color String
 
-  toDo   ToDo @relation(fields: [toDoId], references: [id])
-  toDoId Int
+  toDo   ToDo? @relation(fields: [toDoId], references: [id])
+  toDoId Int?
 }
