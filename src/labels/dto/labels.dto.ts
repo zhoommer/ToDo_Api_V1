@@ -1,12 +1,15 @@
-import { IsString } from "class-validator";
+import { IsNotEmpty, IsNumber, IsOptional, IsString } from "class-validator";
 
 export class LabelsDto {
   @IsString()
-  value: string;
-
-  @IsString()
+  @IsNotEmpty()
   label: string;
 
   @IsString()
+  @IsNotEmpty()
   color: string;
+
+  @IsNumber()
+  @IsOptional()
+  toDoId?: number;
 }

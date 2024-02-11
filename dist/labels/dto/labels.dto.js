@@ -16,14 +16,12 @@ class LabelsDto {
 exports.LabelsDto = LabelsDto;
 __decorate([
     (0, class_validator_1.IsString)(),
-    __metadata("design:type", String)
-], LabelsDto.prototype, "value", void 0);
-__decorate([
-    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], LabelsDto.prototype, "label", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], LabelsDto.prototype, "color", void 0);
 //# sourceMappingURL=labels.dto.js.map

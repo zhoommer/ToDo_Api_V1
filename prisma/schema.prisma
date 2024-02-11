@@ -24,7 +24,6 @@ model ToDo {
 
 model Labels {
   id    Int    @id @default(autoincrement())
-  value String
   label String
   color String
 

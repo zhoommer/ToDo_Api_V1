@@ -1,4 +1,4 @@
-import { Body, HttpStatus, Injectable, Param } from "@nestjs/common";
+import { Body, HttpStatus, Injectable } from "@nestjs/common";
 import { PrismaService } from "src/prisma/prisma.service";
 import { ToDoDto } from "./dto/todo.dto";
 import { CustomExeption } from "src/common/exception/customException";

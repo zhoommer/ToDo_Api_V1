@@ -20,7 +20,6 @@ export declare class TodoController {
         data: ({
             labels: {
                 id: number;
-                value: string;
                 label: string;
                 color: string;
                 toDoId: number;

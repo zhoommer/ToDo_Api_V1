@@ -15,15 +15,39 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.LabelsService = void 0;
 const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("../prisma/prisma.service");
+const customException_1 = require("../common/exception/customException");
 const labels_dto_1 = require("./dto/labels.dto");
 let LabelsService = class LabelsService {
     constructor(prisma) {
         this.prisma = prisma;
     }
-    async addLabel(dto) {
+    async addLabels(dto) {
         try {
+            const label = await this.prisma.labels.create({
+                data: {
+                    label: dto.label,
+                    color: dto.color,
+                    toDoId: null,
+                },
+            });
+            return {
+                message: "Label created successfully",
+                data: label,
+                success: true,
+            };
         }
-        catch (error) { }
+        catch (error) {
+            throw new customException_1.CustomExeption(`${error}`, common_1.HttpStatus.BAD_REQUEST);
+        }
+    }
+    async fetchAllLabels() {
+        try {
+            const labels = this.prisma.labels.findMany();
+            return labels;
+        }
+        catch (error) {
+            throw new customException_1.CustomExeption(`${error}`, common_1.HttpStatus.NOT_FOUND);
+        }
     }
 };
 exports.LabelsService = LabelsService;
@@ -32,7 +56,7 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [labels_dto_1.LabelsDto]),
     __metadata("design:returntype", Promise)
-], LabelsService.prototype, "addLabel", null);
+], LabelsService.prototype, "addLabels", null);
 exports.LabelsService = LabelsService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [prisma_service_1.PrismaService])
