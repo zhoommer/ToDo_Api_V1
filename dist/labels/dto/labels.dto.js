@@ -24,4 +24,9 @@ __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], LabelsDto.prototype, "color", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", Number)
+], LabelsDto.prototype, "toDoId", void 0);
 //# sourceMappingURL=labels.dto.js.map
