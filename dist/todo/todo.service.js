@@ -27,6 +27,7 @@ let TodoService = class TodoService {
                 data: {
                     title: dto.title,
                     description: dto.description,
+                    labels: dto.label,
                     schedule: dto.schedule,
                 },
             });

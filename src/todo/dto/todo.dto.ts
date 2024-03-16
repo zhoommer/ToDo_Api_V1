@@ -11,6 +11,10 @@ export class ToDoDto {
   description?: string;
 
   @IsOptional()
+  @IsString()
+  label?: any;
+
+  @IsOptional()
   @Transform(({ value }) => value && new Date(value))
   @IsDate()
   schedule?: Date;
